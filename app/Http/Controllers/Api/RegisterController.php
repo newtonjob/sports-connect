@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -18,10 +19,11 @@ class RegisterController extends Controller
             'phone'    => 'nullable|unique:users|min:10'
         ]);
 
+        Auth::login(User::create($request->all()));
+
         return Response::api([
-            'title'   => "Check your email",
-            'message' => "Registration successful",
-            'data'    => ['user' => User::create($request->all())]
+            'title'   => 'Check your email',
+            'message' => 'We sent you a special link to verify your email',
         ]);
     }
 }

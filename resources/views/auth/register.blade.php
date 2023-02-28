@@ -1,6 +1,6 @@
 <x-auth>
     <!-- form -->
-    <form action="{{ route('api.register') }}" class="x-submit" data-then="alert">
+    <form action="{{ route('api.register') }}" class="x-submit" data-then="afterRegistration">
         <!-- title-->
         <p class="text-muted mb-2">Create your account, it takes less than a minute.</p>
 
@@ -47,4 +47,18 @@
     <footer class="footer footer-alt">
         <p class="text-muted">Already have account? <a href="{{ route('login') }}" class="text-muted ms-1"><b>Log In</b></a></p>
     </footer>
+
+    @push('script')
+        <script>
+            function afterRegistration({ data }) {
+                swal({
+                    title: data.title,
+                    text: data.message,
+                    icon: "success",
+                    closeOnClickOutside: false,
+                    closeOnEsc: false
+                }).then(() => location.reload());
+            }
+        </script>
+    @endpush
 </x-auth>
