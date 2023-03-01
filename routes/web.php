@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InterestController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyEmailController;
@@ -23,11 +24,13 @@ Route::middleware('guest')->group(function () {
     Route::view('/reset-password/{token}',  'auth.reset')->name('password.reset');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'interests'])->group(function () {
     Route::redirect('/', '/login');
 
     Route::get('/home',         [HomeController::class, 'index'])->name('home');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/interests',    InterestController::class)->name('interests')
+        ->withoutMiddleware('interests');
 
     Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)->name('verification.verify');
     Route::get('/logout',                   LogoutController::class)->name('logout');

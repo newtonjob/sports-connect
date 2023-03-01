@@ -21,7 +21,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-
+                    <p>This is your dashboard. We try to show you relevant information at a glance here. If you've got an idea, please share with us.</p>
                 </div> <!-- end card-body -->
             </div> <!-- end card-->
         </div> <!-- end col -->

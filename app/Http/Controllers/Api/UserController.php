@@ -9,16 +9,13 @@ use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(User::class);
-    }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize($user);
+
         $user->update($request->all());
 
         return Response::api('Updated successfully');
