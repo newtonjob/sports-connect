@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Choose one or more sports you are interested in...</h5>
                     <form action="{{ route('api.interests.store') }}" class="mt-3 x-submit" data-then="reload">
-                        <select type="text" class="form-control" name="sport_id" aria-label="Sports" multiple required>
+                        <select type="text" class="form-control" name="sport_id[]" aria-label="Sports" multiple required>
                             @foreach($sports as $sport)
                                 <option value="{{ $sport->id }}">{{ $sport->name }}</option>
                             @endforeach

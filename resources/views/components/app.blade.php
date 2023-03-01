@@ -10,8 +10,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png"/>
-    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png"/>
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo.png') }}" type="image/png"/>
+    <link rel="icon" href="{{ asset('images/logo/logo.png') }}" type="image/png"/>
 
     <!-- App css -->
     <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
@@ -36,7 +36,7 @@
                 <img src="{{ asset('images/logo/logo.png') }}" class="rounded" alt="logo" height="50">
             </span>
             <span class="topnav-logo-sm">
-                <img src="{{ asset('images/logo.png') }}" alt="favicon" height="30">
+                <img src="{{ asset('images/logo/logo.png') }}" alt="favicon" height="30">
             </span>
         </a>
 

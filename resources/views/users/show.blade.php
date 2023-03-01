@@ -32,7 +32,7 @@
                                     <div>
                                         <h4 class="mt-1 mb-1 text-white">{{ $user->name }}</h4>
                                         <p class="font-13 text-white-50 text-uppercase">
-                                            Football, Basketball, Hockey
+                                            {{ $user->sports->implode('name', ', ') }}
                                         </p>
 
                                         <ul class="mb-0 list-inline text-light">
