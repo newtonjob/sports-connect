@@ -9,6 +9,11 @@ When you clone this repo for the first time, you should...
 
 - Create a `.env` file in project root using the `.env.example` file.
 
+### Run the Migration and Seeder
+```php
+php artisan migrate --seed
+```
+
 ### Serve the Application
 ```php
 php artisan serve
