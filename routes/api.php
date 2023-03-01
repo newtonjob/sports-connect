@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\VerifyEmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +25,9 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function () {
 });
 
 Route::post('register', [RegisterController::class, 'store'])->name('register');
+
+Route::middleware('auth')->group(function () {
+    Route::apiResource('users', UserController::class);
+
+    Route::post('email/verify', VerifyEmailController::class)->name('verification.resend');
+});

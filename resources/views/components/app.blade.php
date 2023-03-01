@@ -10,17 +10,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('portal/images/favicon.png') }}" type="image/png"/>
-    <link rel="icon" href="{{ asset('portal/images/favicon.png') }}" type="image/png"/>
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png"/>
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png"/>
 
     <!-- App css -->
-    <link href="{{ asset('portal/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('portal/css/animate.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css"/>
 
-    <link href="{{ asset('portal/css/app-modern.min.css') }}" rel="stylesheet" type="text/css" id="light-style"/>
-    <link href="{{ asset('portal/css/app-modern-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style"/>
-
-    <livewire:styles/>
+    <link href="{{ asset('css/app-modern.min.css') }}" rel="stylesheet" type="text/css" id="light-style"/>
+    <link href="{{ asset('css/app-modern-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style"/>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -35,10 +33,10 @@
         <!-- LOGO -->
         <a href="{{ route('home') }}" class="topnav-logo">
             <span class="topnav-logo-lg">
-                <img src="{{ asset('portal/images/logo/light-logo.png') }}" class="rounded" alt="logo" height="50">
+                <img src="{{ asset('images/logo/logo.png') }}" class="rounded" alt="logo" height="50">
             </span>
             <span class="topnav-logo-sm">
-                <img src="{{ asset('portal/images/favicon.png') }}" alt="favicon" height="30">
+                <img src="{{ asset('images/logo.png') }}" alt="favicon" height="30">
             </span>
         </a>
 
@@ -50,68 +48,22 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
                     <form class="p-3">
-                        <input type="text" class="form-control" placeholder="Search Reservations..."
-                               aria-label="Search">
+                        <input type="text" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
                 </div>
             </li>
-
-            @if(false)
-                <li class="dropdown notification-list">
-                    <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#"
-                       id="topbar-notifydrop" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="dripicons-bell noti-icon"></i>
-                        <span class="noti-icon-badge"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg"
-                         aria-labelledby="topbar-notifydrop">
-
-                        <!-- item-->
-                        <div class="dropdown-item noti-title">
-                            <h5 class="m-0">
-                            <span class="float-end">
-                                <a href="javascript: void(0);" class="text-dark">
-                                    <small>Clear All</small>
-                                </a>
-                            </span>Notification
-                            </h5>
-                        </div>
-
-                        <div style="max-height: 230px;" data-simplebar>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <div class="notify-icon bg-primary">
-                                    <i class="mdi mdi-comment-account-outline"></i>
-                                </div>
-                                <p class="notify-details">You have one new notification
-                                    <small class="text-muted">1 min ago</small>
-                                </p>
-                            </a>
-                        </div>
-
-                        <!-- All-->
-                        <a href="javascript:void(0);"
-                           class="dropdown-item text-center text-primary notify-item notify-all">
-                            View All
-                        </a>
-
-                    </div>
-                </li>
-            @endif
-
-            <livewire:mini-cart/>
 
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
                    id="topbar-userdrop" href="#" role="button" aria-haspopup="true"
                    aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="{{ user('photo') }}" alt="user-image"
+                        <img src="{{ Auth::user()->photo }}" alt="user-image"
                              class="rounded-circle">
                     </span>
                     <span>
-                        <span class="account-user-name">{{ user('name') }}</span>
-                        <span class="account-position">{{ user('email') }}</span>
+                        <span class="account-user-name">{{ Auth::user()->name }}</span>
+                        <span class="account-position">{{ Auth::user()->email }}</span>
                     </span>
                 </a>
                 <div
@@ -119,7 +71,7 @@
                     aria-labelledby="topbar-userdrop">
 
                     <!-- item-->
-                    <a href="{{ route('users.show', user()) }}" class="dropdown-item notify-item">
+                    <a href="{{ route('users.show', Auth::user()) }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-account-circle me-1"></i>
                         <span>My Profile</span>
                     </a>
@@ -129,18 +81,10 @@
                         <i class="mdi mdi-account-edit me-1"></i>
                         <span>Settings</span>
                     </a>
-
-                    @impersonating
-                    <a href="{{ route('impersonate.leave') }}" class="dropdown-item notify-item">
+                    <a href="{{ route('logout') }}" class="dropdown-item notify-item">
                         <i class="mdi mdi-logout me-1"></i>
-                        <span>Leave Impersonation</span>
+                        <span>Logout</span>
                     </a>
-                    @else
-                        <a href="{{ route('logout') }}" class="dropdown-item notify-item">
-                            <i class="mdi mdi-logout me-1"></i>
-                            <span>Logout</span>
-                        </a>
-                        @endImpersonating
                 </div>
             </li>
 
@@ -155,7 +99,7 @@
         <div class="app-search dropdown">
             <form>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Reservations..." aria-label="Search" id="top-search">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" id="top-search">
                     <span class="mdi mdi-magnify search-icon"></span>
                     <button class="input-group-text btn-primary" type="submit">Search</button>
                 </div>
@@ -173,10 +117,10 @@
         <div class="leftside-menu leftside-menu-detached">
 
             <div class="leftbar-user">
-                <a href="{{ route('users.show', user()) }}">
-                    <img src="{{ user('photo') }}" alt="user-image" height="42"
+                <a href="{{ route('users.show', Auth::user()) }}">
+                    <img src="{{ Auth::user()->photo }}" alt="user-image" height="42"
                          class="rounded-circle shadow-sm">
-                    <span class="leftbar-user-name">{{ user('name') }}</span>
+                    <span class="leftbar-user-name">{{ Auth::user()->name }}</span>
                 </a>
             </div>
 
@@ -186,35 +130,33 @@
                 <li class="side-nav-title side-nav-item">Navigation</li>
 
                 <li class="side-nav-item">
-                    <a href="{{ route('dashboard') }}" class="side-nav-link">
+                    <a href="{{ route('home') }}" class="side-nav-link">
                         <i class="uil-home-alt"></i>
                         <span> Dashboard </span>
                     </a>
                 </li>
 
-                @include("includes.nav.".user('type'))
-
-                <li class="side-nav-title side-nav-item">MISC</li>
-
                 <li class="side-nav-item">
-                    <a href="{{ route('home') }}" class="side-nav-link">
-                        <i class="uil-external-link-alt"></i>
-                        <span> Home Page </span>
+                    <a href="javascript:" class="side-nav-link">
+                        <i class="uil-chat-bubble-user"></i>
+                        <span> Buddies </span>
                     </a>
                 </li>
 
                 <li class="side-nav-item">
-                    @impersonating
-                    <a href="{{ route('impersonate.leave') }}" class="side-nav-link">
-                        <i class="uil-sign-out-alt"></i>
-                        <span> Leave impersonation </span>
+                    <a href="javascript:" class="side-nav-link">
+                        <i class="uil-image-search"></i>
+                        <span> Discover </span>
                     </a>
-                    @else
-                        <a href="{{ route('logout') }}" class="side-nav-link">
-                            <i class="uil-sign-out-alt"></i>
-                            <span> Logout </span>
-                        </a>
-                        @endImpersonating
+                </li>
+
+                <li class="side-nav-title side-nav-item">MISC</li>
+
+                <li class="side-nav-item">
+                    <a href="{{ route('logout') }}" class="side-nav-link">
+                        <i class="uil-sign-out-alt"></i>
+                        <span> Logout </span>
+                    </a>
                 </li>
             </ul>
 
@@ -225,10 +167,8 @@
         <div class="content-page">
             <x-verification_notice/>
 
-            <x-impersonating/>
-
             <div class="content">
-                @yield('content')
+                {{ $slot }}
             </div>
 
             <!-- Footer Start -->
@@ -240,8 +180,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="text-md-end footer-links d-none d-md-block">
-                                <a target="_blank" href="{{ route('home') }}">Go to Home Page</a>
-                                <a href="javascript: void(0);">Contact Us</a> {{--Todo: Trigger Tawk.to--}}
+                                <a target="_blank" href="{{ route('home') }}">Home</a>
+                                <a href="javascript: void(0);">Contact Us</a>
                             </div>
                         </div>
                     </div>
@@ -254,19 +194,14 @@
 </div>
 <!-- END Container -->
 
-<script src="{{ asset('portal/js/vendor.min.js') }}"></script>
+<script src="{{ asset('js/vendor.min.js') }}"></script>
 <!-- bundle -->
-<script src="{{ asset('portal/js/app.min.js') }}"></script>
+<script src="{{ asset('js/app.min.js') }}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('portal/js/bootstrap-notify.js?v=0') }}"></script>
-<script src="{{ asset('portal/js/sweetalert.min.js') }}"></script>
-<script src="{{ asset('portal/js/request.js') }}?v=1.02"></script>
-
-<x-scripts.tawkto/>
-<x-scripts.datatable/>
-
-<livewire:scripts/>
+<script src="{{ asset('js/bootstrap-notify.js?v=0') }}"></script>
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
+<script src="{{ asset('js/request.js') }}?v=1.02"></script>
 
 @stack('script')
 
