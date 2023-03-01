@@ -28,7 +28,7 @@ Route::controller(AuthController::class)->prefix('/auth')->group(function () {
 Route::post('register', [RegisterController::class, 'store'])->name('register');
 
 Route::middleware('auth')->group(function () {
-    Route::post('users',     [UserController::class, 'update'])->name('users.update');
+    Route::put('users',      [UserController::class, 'update'])->name('users.update');
     Route::post('interests', [InterestController::class, 'store'])->name('interests.store');
 
     Route::post('email/verify', VerifyEmailController::class)->name('verification.resend');
