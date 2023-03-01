@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -66,5 +67,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function photo(): Attribute
     {
         return Attribute::get(fn () => "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={$this->name}");
+    }
+
+    public function sports(): BelongsToMany
+    {
+        return $this->belongsToMany(Sport::class)->withTimestamps();
     }
 }
