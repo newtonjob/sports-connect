@@ -4,12 +4,15 @@
         <!-- title-->
         <p class="text-muted mb-2">Create your account, it takes less than a minute.</p>
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Full Name</label>
-            <input class="form-control" type="text" id="name" name="name" required>
-        </div>
-
         <div class="row">
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input class="form-control" type="text" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input class="form-control" type="text" id="username" name="username" required>
+            </div>
             <div class="col-sm-6 mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input class="form-control" type="email" id="email" name="email" required>

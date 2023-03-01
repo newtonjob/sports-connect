@@ -94,13 +94,22 @@
                             <form action="{{ route('api.users.update', $user) }}" class="x-submit">
                                 @method('put')
 
-                                <h5 class="mb-4 text-uppercase"><i class="mdi mdi-account-circle me-1"></i> Personal Bio</h5>
+                                <h5 class="mb-4 text-uppercase">
+                                    <i class="mdi mdi-account-circle me-1"></i> Personal Bio
+                                </h5>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Name</label>
                                             <input type="text" class="form-control" name="name"
                                                    value="{{ $user->name }}" id="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" class="form-control" name="username"
+                                                   value="{{ $user->username }}" id="username">
                                         </div>
                                     </div>
 
