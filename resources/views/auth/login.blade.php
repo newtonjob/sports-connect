@@ -6,14 +6,13 @@
             <p class="text-muted mb-4">Enter your email address and password to access your account.</p>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input class="form-control" type="email" id="email" name="email" x-model="email" required placeholder="Enter your email">
+                <label for="email" class="form-label">Email or Phone</label>
+                <input class="form-control" id="email" name="email" x-model="email" required>
             </div>
             <div class="mb-3">
                 <a href="#" class="text-muted float-end" @click="forgot = true"><small>Forgot your password?</small></a>
                 <label for="password" class="form-label">Password</label>
-                <input class="form-control" type="password" name="password" required id="password"
-                       placeholder="Enter your password">
+                <input class="form-control" type="password" name="password" required id="password">
             </div>
             <div class="mb-3">
                 <div class="form-check">

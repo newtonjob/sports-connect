@@ -23,8 +23,9 @@ class RegistrationControllerTest extends TestCase
     {
         Notification::fake();
 
-        $response = $this->postJson(route('api.register'), $data = [
+        $this->postJson(route('api.register'), $data = [
             'name'  => 'Newton Job',
+            'username'  => 'newtonjob',
             'email' => 'jobnewton3@gmail.com',
             'phone' => '07011227815',
             'password' => 'Pass123',

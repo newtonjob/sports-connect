@@ -19,7 +19,13 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        throw_unless(Auth::attempt($request->only(['email', 'password']), $request->boolean('remember')),
+        if ($request->str('email')->contains('@')) {
+            $credentials = $request->only(['email', 'password']);
+        } else {
+            $credentials = ['phone' => $request->email, 'password' => $request->password];
+        }
+
+        throw_unless(Auth::attempt($credentials, $request->boolean('remember')),
             ValidationException::withMessages(['email' => __('auth.failed')])
         );
 
