@@ -25,7 +25,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::redirect('/', '/login');
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)->name('verification.verify');
     Route::get('/logout',                   LogoutController::class)->name('logout');

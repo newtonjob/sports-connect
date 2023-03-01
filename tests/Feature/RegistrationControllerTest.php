@@ -31,7 +31,7 @@ class RegistrationControllerTest extends TestCase
             'password_confirmation' => 'Pass123'
         ]);
 
-        $response->assertOk();
+        $this->assertAuthenticated();
         $this->assertDatabaseHas('users', Arr::only($data, ['email', 'phone']));
         Notification::assertSentTimes(VerifyEmail::class, 1);
     }
